@@ -10,10 +10,12 @@
 </head>
 
 <body>
+    <h1 id="totalGame"></h1>
     <h1 id="outcome"></h1>
     <div id="container">
         <div id="player">
             <h1>Player</h1>
+            <p id="playerScore">0</p>
             <img src="./images/question-mark.svg" alt="Waiting" height="200px" width="auto">
         </div>
         <div>
@@ -21,13 +23,14 @@
         </div>
         <div id="computer">
             <h1>Computer</h1>
+            <p id="computerScore">0</p>
             <img src="./images/question-mark.svg" alt="Waiting" height="200px" width="auto">
         </div>
     </div>
     <div id="option">
-        <button><img src="./images/rock.png" alt="rock" width="100px" height="auto"></button>
-        <button><img src="./images/paper.png" alt="paper" width="100px" height="auto"></button>
-        <button><img src="./images/scissor.png" alt="scissor" width="100px" height="auto"></button>
+        <img src="./images/rock.png" alt="rock" width="100px" height="auto" id="rock" data=1>
+        <img src="./images/paper.png" alt="paper" width="100px" height="auto" id="paper" data=2>
+        <img src="./images/scissor.png" alt="scissor" width="100px" height="auto" id="scissor" data=3>
     </div>
 </body>
 
