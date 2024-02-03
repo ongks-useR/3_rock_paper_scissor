@@ -1,86 +1,113 @@
 function getComputerChoice() {
 
-    let num = Math.ceil(Math.random() * 3);
-    let result;
+    // 1 --> Rock; 2 --> Paper; 3 --> Scissor
+    const computerChoice = Math.ceil(Math.random() * 3);
+    const computerImg = document.querySelector('#computer img');
 
-    if (num === 1) {
-        result = "Rock"
+    if (computerChoice === 1) {
+        computerImg.setAttribute('src', './images/rock.png');
     }
-    else if (num === 2) {
-        result = "Scissor"
+    else if (computerChoice === 2) {
+        computerImg.setAttribute('src', './images/paper.png');
     }
     else {
-        result = "Paper"
+        computerImg.setAttribute('src', './images/scissor.png');
     }
-    return result;
+
+    return computerChoice;
 }
 
-function getPlayerChoice() {
+function getPlayerChoice(e) {
+    const playerImg = document.querySelector('#player img');
+    playerImg.setAttribute('src', e.target.getAttribute('src'));
 
-    let num = Math.ceil(Math.random() * 3);
-    let result;
+    const playerChoice = parseInt(e.target.getAttribute('data'))
 
-    if (num === 1) {
-        result = "Rock"
-    }
-    else if (num === 2) {
-        result = "Scissor"
-    }
-    else {
-        result = "Paper"
-    }
-    return result;
+    return playerChoice
 }
 
 function playRound(playerSelection, computerSelection) {
+
+    // 1 --> Rock; 2 --> Paper; 3 --> Scissor
 
     const player = playerSelection;
     const computer = computerSelection;
 
     /* Scenarios where Player win the game */
-    let victory = (player === "Rock" & computer === "Scissor") || (player === "Scissor" & computer === "Paper") || (player === "Paper" & computer === "Rock")
+    const userWin = (player === 1 & computer === 3) || (player === 3 & computer === 2) || (player === 2 & computer === 1)
 
-    let result;
+    const draw = (player === 1 & computer === 1) || (player === 2 & computer === 2) || (player === 3 & computer === 3)
 
-    if (victory) {
-        result = "You WIN!!"
+    let outcome = ''
+
+    if (userWin) {
+        outcome = 1
+    }
+    else if (draw) {
+        outcome = 0
     }
     else {
-        result = "You LOSE!!"
+        outcome = -1
     }
 
-    return result;
+    return outcome;
 }
+
+
+const rock = document.getElementById('rock');
+rock.addEventListener('click', e => game(e));
+
+const paper = document.getElementById('paper');
+paper.addEventListener('click', e => game(e));
+
+const scissor = document.getElementById('scissor');
+scissor.addEventListener('click', e => game(e));
+
+const player = document.querySelector('#playerScore');
+const computer = document.querySelector('#computerScore');
+
+const numberOfGame = document.querySelector('#totalGame');
+const finalOutcome = document.querySelector('#outcome');
 
 /* 
     Ultimate function that plays the game where
     user will decide how many game to play. if user score more than computer, then user wins and
     vice versa.
 */
-function game() {
 
-    let n = parseInt(prompt("How many round you wanna play?"));
-    let playerScore = 0;
-    let computerScore = 0;
+let playerScore = 0;
+let computerScore = 0;
+let totalGame = 0;
 
-    for (let i = 1; i <= n; i++) {
+function game(e) {
 
-        const outcome = playRound(getPlayerChoice(), getComputerChoice());
+    if ((playerScore + computerScore) < 5) {
 
-        console.log(outcome)
+        totalGame++
+        numberOfGame.textContent = `ROUND ${totalGame}`
 
-        if (outcome === "You WIN!!") {
+        const outcome = playRound(getPlayerChoice(e), getComputerChoice());
+
+        if (outcome === 1) {
             playerScore++;
+            player.textContent = playerScore;
+        }
+        else if (outcome === 0) {
+            return
         }
         else {
             computerScore++;
+            computer.textContent = computerScore;
         }
     }
 
-    if (playerScore > computerScore) {
-        console.log("You are the WINNER!!");
-    }
-    else {
-        console.log("You are the LOSER!!");
+    if ((playerScore + computerScore) == 5) {
+
+        if (playerScore > computerScore) {
+            finalOutcome.textContent = 'YOU WIN!!'
+        }
+        else {
+            finalOutcome.textContent = 'YOU LOSE!!'
+        }
     }
 }
