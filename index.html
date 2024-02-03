@@ -5,11 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game of Odin</title>
-    <script src="game.js"></script>
+    <link rel="stylesheet" href="game.css">
+    <script src="game.js" defer></script>
 </head>
 
 <body>
-
+    <h1 id="outcome"></h1>
+    <div id="container">
+        <div id="player">
+            <h1>Player</h1>
+            <img src="./images/question-mark.svg" alt="Waiting" height="200px" width="auto">
+        </div>
+        <div>
+            <img src="./images/versus-logo.jpeg" alt="against" width="200px" height="auto">
+        </div>
+        <div id="computer">
+            <h1>Computer</h1>
+            <img src="./images/question-mark.svg" alt="Waiting" height="200px" width="auto">
+        </div>
+    </div>
+    <div id="option">
+        <button><img src="./images/rock.png" alt="rock" width="100px" height="auto"></button>
+        <button><img src="./images/paper.png" alt="paper" width="100px" height="auto"></button>
+        <button><img src="./images/scissor.png" alt="scissor" width="100px" height="auto"></button>
+    </div>
 </body>
 
 </html>
