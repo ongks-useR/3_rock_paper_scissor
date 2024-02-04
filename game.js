@@ -81,7 +81,7 @@ let totalGame = 0;
 
 function game(e) {
 
-    if ((playerScore + computerScore) < 5) {
+    if ((playerScore < 5) && (computerScore < 5)) {
 
         totalGame++
         numberOfGame.textContent = `ROUND ${totalGame}`
@@ -91,6 +91,9 @@ function game(e) {
         if (outcome === 1) {
             playerScore++;
             player.textContent = playerScore;
+            if (playerScore == 5) {
+                finalOutcome.textContent = 'YOU WIN!!'
+            }
         }
         else if (outcome === 0) {
             return
@@ -98,16 +101,12 @@ function game(e) {
         else {
             computerScore++;
             computer.textContent = computerScore;
+            if (computerScore == 5) {
+                finalOutcome.textContent = 'YOU LOSE!!'
+            }
         }
     }
-
-    if ((playerScore + computerScore) == 5) {
-
-        if (playerScore > computerScore) {
-            finalOutcome.textContent = 'YOU WIN!!'
-        }
-        else {
-            finalOutcome.textContent = 'YOU LOSE!!'
-        }
+    else if (((playerScore == 5) && (computerScore < 5)) || ((playerScore < 5) && (computerScore == 5))) {
+        return
     }
 }
