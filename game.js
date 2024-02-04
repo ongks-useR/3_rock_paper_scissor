@@ -91,18 +91,22 @@ function game(e) {
         if (outcome === 1) {
             playerScore++;
             player.textContent = playerScore;
+            finalOutcome.textContent = 'YOU WIN'
+
             if (playerScore == 5) {
-                finalOutcome.textContent = 'YOU WIN!!'
+                finalOutcome.textContent = 'YOU ARE THE WINNER !!'
             }
         }
         else if (outcome === 0) {
-            return
+            finalOutcome.textContent = 'DRAW'
         }
         else {
             computerScore++;
             computer.textContent = computerScore;
+            finalOutcome.textContent = 'COMPUTER WIN'
+
             if (computerScore == 5) {
-                finalOutcome.textContent = 'YOU LOSE!!'
+                finalOutcome.textContent = 'COMPUTER IS THE WINNER !!'
             }
         }
     }
