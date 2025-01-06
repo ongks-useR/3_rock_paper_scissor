@@ -1,4 +1,5 @@
 body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -8,19 +9,55 @@ body {
 }
 
 #container {
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     border-radius: 20px;
     background-color: white;
 }
 
+#container > div {
+    margin: 30px 0 50px 0;
+}
+
+input[type="button"] {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+    font-weight: 600;
+}
+
 #battle-zone {
     display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+#battle-zone > div {
+    text-align: center;
+}
+
+#battle-zone > div:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    font-size: 30px;
+    color: red;
+}
+
+.team {
+    font-size: 20px;
 }
 
 
 .selected {
-    height: 150px;
+    height: 100px;
     width: auto;
 }
 
@@ -30,7 +67,13 @@ body {
 }
 
 
+#choice-buttons {
+    text-align: center;
+}
+
 #choice-buttons > img {
-    height: 100px;
+    height: 70px;
     width: auto;
+    margin: 0 10px;
+    border-radius: 50%;
 }
