@@ -1,116 +1,50 @@
-function getComputerChoice() {
 
-    // 1 --> Rock; 2 --> Paper; 3 --> Scissor
-    const computerChoice = Math.ceil(Math.random() * 3);
-    const computerImg = document.querySelector('#computer img');
+let roundNumber = 1;
 
-    if (computerChoice === 1) {
-        computerImg.setAttribute('src', './images/rock.png');
-    }
-    else if (computerChoice === 2) {
-        computerImg.setAttribute('src', './images/paper.png');
-    }
-    else {
-        computerImg.setAttribute('src', './images/scissor.png');
-    }
+const startButton = document.querySelector('input');
 
-    return computerChoice;
+startButton.addEventListener('click', function(){
+    this.style.cssText = "display: none;"
+
+    const para = document.querySelector('#round > p');
+
+    para.textContent = `ROUND ${roundNumber}`
+});
+
+
+const choice = {
+    0: "./images/rock.png",
+    1: "./images/paper.png",
+    2: "./images/scissor.png"
 }
 
-function getPlayerChoice(e) {
-    const playerImg = document.querySelector('#player img');
-    playerImg.setAttribute('src', e.target.getAttribute('src'));
+function randomNumber(){
+    const number = Math.floor(Math.random() * 3)
 
-    const playerChoice = parseInt(e.target.getAttribute('data'))
-
-    return playerChoice
+    return number;
 }
 
-function playRound(playerSelection, computerSelection) {
+function computerChoice(){
+    const num = randomNumber();
+    const selected = choice[num];
 
-    // 1 --> Rock; 2 --> Paper; 3 --> Scissor
-
-    const player = playerSelection;
-    const computer = computerSelection;
-
-    /* Scenarios where Player win the game */
-    const userWin = (player === 1 & computer === 3) || (player === 3 & computer === 2) || (player === 2 & computer === 1)
-
-    const draw = (player === 1 & computer === 1) || (player === 2 & computer === 2) || (player === 3 & computer === 3)
-
-    let outcome = ''
-
-    if (userWin) {
-        outcome = 1
-    }
-    else if (draw) {
-        outcome = 0
-    }
-    else {
-        outcome = -1
-    }
-
-    return outcome;
+    const computerImg = document.querySelector(".computer");
+    computerImg.src = selected;
 }
 
 
-const rock = document.getElementById('rock');
-rock.addEventListener('click', e => game(e));
+function playerChoice(e) {
+    const num = e.target.getAttribute('data');
+    const selected = choice[num];
 
-const paper = document.getElementById('paper');
-paper.addEventListener('click', e => game(e));
+    const playerImg = document.querySelector(".player");
+    playerImg.src = selected;
 
-const scissor = document.getElementById('scissor');
-scissor.addEventListener('click', e => game(e));
-
-const player = document.querySelector('#playerScore');
-const computer = document.querySelector('#computerScore');
-
-const numberOfGame = document.querySelector('#totalGame');
-const finalOutcome = document.querySelector('#outcome');
-
-/* 
-    Ultimate function that plays the game where
-    user will decide how many game to play. if user score more than computer, then user wins and
-    vice versa.
-*/
-
-let playerScore = 0;
-let computerScore = 0;
-let totalGame = 0;
-
-function game(e) {
-
-    if ((playerScore < 5) && (computerScore < 5)) {
-
-        totalGame++
-        numberOfGame.textContent = `ROUND ${totalGame}`
-
-        const outcome = playRound(getPlayerChoice(e), getComputerChoice());
-
-        if (outcome === 1) {
-            playerScore++;
-            player.textContent = playerScore;
-            finalOutcome.textContent = 'YOU WIN'
-
-            if (playerScore == 5) {
-                finalOutcome.textContent = 'YOU ARE THE WINNER !!'
-            }
-        }
-        else if (outcome === 0) {
-            finalOutcome.textContent = 'DRAW'
-        }
-        else {
-            computerScore++;
-            computer.textContent = computerScore;
-            finalOutcome.textContent = 'COMPUTER WIN'
-
-            if (computerScore == 5) {
-                finalOutcome.textContent = 'COMPUTER IS THE WINNER !!'
-            }
-        }
-    }
-    else if (((playerScore == 5) && (computerScore < 5)) || ((playerScore < 5) && (computerScore == 5))) {
-        return
-    }
+    computerChoice();
 }
+
+const selections = Array.from(document.querySelectorAll("#choice-buttons > img"));
+
+selections.forEach(selected => {
+    selected.addEventListener('click', e => playerChoice(e));
+})
