@@ -1,52 +1,36 @@
 body {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-}
-
-#outcome,
-#totalGame {
-    height: 50px;
-    font-size: 50px;
-}
-
-#outcome {
-    color: #76D7C4;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.322);
+    display: flex;
+    align-items: center;
 }
 
 #container {
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 20px;
+    background-color: white;
+}
+
+#battle-zone {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 50px;
 }
 
-#player h1,
-#computer h1 {
-    margin-top: 0px;
-    margin-bottom: 20px;
-    font-size: 60px;
+
+.selected {
+    height: 150px;
+    width: auto;
 }
 
-#playerScore,
-#computerScore {
-    font-size: 60px;
-    margin: 40px;
-    color: red;
+.versus {
+    height: 150px;
+    width: auto;
 }
 
-#player img,
-#computer img {
-    border-radius: 40%;
-}
 
-#option {
-    margin: 20px;
-}
-
-#option img {
-    border-radius: 40%;
-    margin: 20px;
+#choice-buttons > img {
+    height: 100px;
+    width: auto;
 }
