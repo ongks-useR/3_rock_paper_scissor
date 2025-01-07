@@ -31,6 +31,7 @@ function computerChoice(){
     const selected = choice[num];
 
     const computerImg = document.querySelector(".selected.computer");
+    computerImg.style.cssText = "transform: scaleX(-1);"
     computerImg.src = selected;
 
     return num;
@@ -76,9 +77,11 @@ function playerChoice(e) {
         const result = document.querySelector("#result > p");
     
         if (playerScore == 5) {
+            result.style.cssText = "color: green"
             result.textContent = "You WIN !!"
         }
         else if (computerScore == 5) {
+            result.style.cssText = "color: red"
             result.textContent = "YOU LOSE !!"
         }
         else {
